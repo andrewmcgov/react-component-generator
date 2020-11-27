@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:react-component-generator.helloWorld"
+        "onCommand:react-component-generator.generateComponent"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "react-component-generator.helloWorld",
-				"title": "Hello World"
+				"command": "react-component-generator.generateComponent",
+				"title": "Generate React Component"
 			}
 		]
 	},
