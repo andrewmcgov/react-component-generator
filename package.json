@@ -10,16 +10,30 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:react-component-generator.generateComponent"
+    "onCommand:extension.generateComponent"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "react-component-generator.generateComponent",
+        "command": "extension.generateComponent",
         "title": "Generate React Component"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.generateComponent",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.generateComponent",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
