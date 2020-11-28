@@ -1,5 +1,88 @@
 import {window, workspace, Uri} from 'vscode';
+import {exportLine, reactFunctionComponent} from './templates';
 
+function writeFile(path: string, content: string) {
+  workspace.fs.writeFile(Uri.file(path), new Uint8Array(Buffer.from(content)));
+}
+
+async function readFile(path: string) {
+  try {
+    const file = await workspace.fs.readFile(Uri.file(path));
+    return file.toString();
+  } catch {
+    return null;
+  }
+}
+
+async function readDirectory(path: string) {
+  try {
+    const directory = await workspace.fs.readDirectory(Uri.file(path));
+    return directory;
+  } catch {
+    return null;
+  }
+}
+
+async function directoryToAddComponent(uri: Uri) {
+  const {path} = uri;
+
+  // If user clicked on a components folder, we want to add our new component there
+  if (path.endsWith('components')) {
+    return path;
+    // If user clicks on a parent folder, we want to add our component to ParentFolder/components
+  } else if (await readDirectory(path)) {
+    return path.concat('/components');
+  }
+
+  // Otherwise, we want to work in the ./components folder
+  const pathArray = uri.path.split('/');
+  pathArray.pop();
+  const newPath = pathArray.join('/');
+
+  if (newPath.endsWith('components')) {
+    return newPath;
+  }
+
+  return newPath.concat('/components');
+}
+
+async function writeComponentsFolderIndexFile(
+  directory: string,
+  componentName: string
+) {
+  const componentsFolderIndexPath = `${directory}/index.ts`;
+  const componentsFolderIndexContents = await readFile(
+    componentsFolderIndexPath
+  );
+
+  if (componentsFolderIndexContents) {
+    writeFile(
+      componentsFolderIndexPath,
+      componentsFolderIndexContents.concat(exportLine(componentName))
+    );
+  } else {
+    writeFile(componentsFolderIndexPath, exportLine(componentName));
+  }
+}
+
+async function writeComponentFiles(directory: string, componentName: string) {
+  // Write component index file
+  writeFile(
+    `${directory}/${componentName}/index.ts`,
+    exportLine(componentName)
+  );
+
+  // Write component file
+  writeFile(
+    `${directory}/${componentName}/${componentName}.tsx`,
+    reactFunctionComponent(componentName)
+  );
+
+  // Write components folder index file
+  writeComponentsFolderIndexFile(directory, componentName);
+}
+
+// This is the function that gets registered to our command
 export async function generateComponent(uri?: Uri) {
   if (!uri) {
     return window.showErrorMessage('No file path found.');
@@ -11,28 +94,7 @@ export async function generateComponent(uri?: Uri) {
     return console.error('No component name passed');
   }
 
-  const directory = getDirectory(uri);
+  const directory = await directoryToAddComponent(uri);
 
   writeComponentFiles(directory, componentName);
-}
-
-function writeComponentFiles(directory: string, componentName: string) {
-  workspace.fs.writeFile(
-    Uri.file(`${directory}/components/${componentName}/index.ts`),
-    new Uint8Array()
-  );
-  workspace.fs.writeFile(
-    Uri.file(`${directory}/components/${componentName}/${componentName}.ts`),
-    new Uint8Array()
-  );
-}
-
-function getDirectory(uri: Uri) {
-  const pathArray = uri.path.split('/');
-  pathArray.pop();
-  return pathArray.join('/');
-}
-
-function writeFile(name: string) {
-  workspace.fs.writeFile(Uri.file(`/temp/${name}.ts`), new Uint8Array());
 }
