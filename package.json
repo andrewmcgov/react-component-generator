@@ -33,6 +33,20 @@
           "group": "navigation"
         }
       ]
+    },
+    "configuration": {
+      "title": "react-component-generator",
+      "properties": {
+        "reactcomponentgenerator.language": {
+          "type": "string",
+          "default": "ts",
+          "enum": [
+            "ts",
+            "js"
+          ],
+          "description": "Specifies if components should be generated in TypeScript or JavaScript."
+        }
+      }
     }
   },
   "scripts": {

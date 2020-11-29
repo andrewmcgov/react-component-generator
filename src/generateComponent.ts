@@ -5,6 +5,11 @@ import {
   testFileTemplate,
 } from './templates';
 
+enum Language {
+  typeScript = 'ts',
+  javaScript = 'js',
+}
+
 function writeFile(path: string, content: string) {
   workspace.fs.writeFile(Uri.file(path), new Uint8Array(Buffer.from(content)));
 }
@@ -52,9 +57,10 @@ async function directoryToAddComponent(uri: Uri) {
 
 async function writeComponentsFolderIndexFile(
   directory: string,
-  componentName: string
+  componentName: string,
+  language: Language
 ) {
-  const componentsFolderIndexPath = `${directory}/index.ts`;
+  const componentsFolderIndexPath = `${directory}/index.${language}`;
   const componentsFolderIndexContents = await readFile(
     componentsFolderIndexPath
   );
@@ -70,26 +76,30 @@ async function writeComponentsFolderIndexFile(
 }
 
 async function writeComponentFiles(directory: string, componentName: string) {
+  const language: Language =
+    workspace.getConfiguration('reactcomponentgenerator').get('language') ||
+    Language.typeScript;
+
   // Write component index file
   writeFile(
-    `${directory}/${componentName}/index.ts`,
+    `${directory}/${componentName}/index.${language}`,
     exportLineTemplate(componentName)
   );
 
   // Write component file
   writeFile(
-    `${directory}/${componentName}/${componentName}.tsx`,
+    `${directory}/${componentName}/${componentName}.${language}x`,
     reactFunctionComponentTemplate(componentName)
   );
 
   // Write component file
   writeFile(
-    `${directory}/${componentName}/tests/${componentName}.test.tsx`,
+    `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
     testFileTemplate(componentName)
   );
 
   // Write components folder index file
-  writeComponentsFolderIndexFile(directory, componentName);
+  writeComponentsFolderIndexFile(directory, componentName, language);
 }
 
 // This is the function that gets registered to our command
