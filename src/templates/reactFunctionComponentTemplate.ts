@@ -1,4 +1,4 @@
-export function reactFunctionComponent(componentName: string) {
+export function reactFunctionComponentTemplate(componentName: string) {
   return `
 import React from 'react';
 

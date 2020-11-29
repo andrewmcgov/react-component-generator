@@ -1,2 +1,3 @@
-export {exportLine} from './exportLine';
-export {reactFunctionComponent} from './reactFunctionComponent';
+export {exportLineTemplate} from './exportLineTemplate';
+export {reactFunctionComponentTemplate} from './reactFunctionComponentTemplate';
+export {testFileTemplate} from './testFileTemplate';

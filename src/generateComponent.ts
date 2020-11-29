@@ -1,5 +1,9 @@
 import {window, workspace, Uri} from 'vscode';
-import {exportLine, reactFunctionComponent} from './templates';
+import {
+  exportLineTemplate,
+  reactFunctionComponentTemplate,
+  testFileTemplate,
+} from './templates';
 
 function writeFile(path: string, content: string) {
   workspace.fs.writeFile(Uri.file(path), new Uint8Array(Buffer.from(content)));
@@ -58,10 +62,10 @@ async function writeComponentsFolderIndexFile(
   if (componentsFolderIndexContents) {
     writeFile(
       componentsFolderIndexPath,
-      componentsFolderIndexContents.concat(exportLine(componentName))
+      componentsFolderIndexContents.concat(exportLineTemplate(componentName))
     );
   } else {
-    writeFile(componentsFolderIndexPath, exportLine(componentName));
+    writeFile(componentsFolderIndexPath, exportLineTemplate(componentName));
   }
 }
 
@@ -69,13 +73,19 @@ async function writeComponentFiles(directory: string, componentName: string) {
   // Write component index file
   writeFile(
     `${directory}/${componentName}/index.ts`,
-    exportLine(componentName)
+    exportLineTemplate(componentName)
   );
 
   // Write component file
   writeFile(
     `${directory}/${componentName}/${componentName}.tsx`,
-    reactFunctionComponent(componentName)
+    reactFunctionComponentTemplate(componentName)
+  );
+
+  // Write component file
+  writeFile(
+    `${directory}/${componentName}/tests/${componentName}.test.tsx`,
+    testFileTemplate(componentName)
   );
 
   // Write components folder index file
