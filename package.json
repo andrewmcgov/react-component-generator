@@ -3,9 +3,10 @@
   "displayName": "React Component Generator",
   "description": "Generates files needed for new react components",
   "author": {
-    "name": "Andrew McGoveran"
+    "name": "AndrewMcGoveran"
   },
-  "version": "0.0.1",
+  "publisher": "Andrew McGoveran",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -18,10 +19,6 @@
     "generator",
     "typescript"
   ],
-  "galleryBanner": {
-    "color": "#05d5f5",
-    "theme": "dark"
-  },
   "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
   "activationEvents": [
     "onCommand:extension.generateComponent"
