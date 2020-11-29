@@ -2,6 +2,9 @@
   "name": "react-component-generator",
   "displayName": "React Component Generator",
   "description": "Generates files needed for new react components",
+  "author": {
+    "name": "Andrew McGoveran"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.51.0"
@@ -9,6 +12,17 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "react",
+    "component",
+    "generator",
+    "typescript"
+  ],
+  "galleryBanner": {
+    "color": "#05d5f5",
+    "theme": "dark"
+  },
+  "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
   "activationEvents": [
     "onCommand:extension.generateComponent"
   ],
@@ -17,7 +31,7 @@
     "commands": [
       {
         "command": "extension.generateComponent",
-        "title": "Generate React Component"
+        "title": "Generate react component"
       }
     ],
     "menus": {
@@ -49,6 +63,12 @@
       }
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewmcgov/react-component-generator"
+  },
+  "homepage": "https://github.com/andrewmcgov/react-component-generator/blob/main/README.md",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack --devtool nosources-source-map --config ./build/node-extension.webpack.config.js",

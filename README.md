@@ -13,9 +13,11 @@ A VS Code extension for generating new react component files with the following 
 
 ## Features
 
-Right click in the file editor or on a file in the explorer and click `Generate React Component` to scaffold out a new React component with all the files you need.
+Right click in the file editor or on a file in the explorer and click `Generate react component` to scaffold out a new React component with all the files you need.
 
 Supports TypeScript and Javascript. Use the `language` setting to choose the language for the generated component.
+
+<img width="417" alt="Generate react component appears as an option in the explorer right click menu" src="https://user-images.githubusercontent.com/14366097/100553487-1ecc0800-325c-11eb-929b-add9b82cac47.png">
 
 ## Development
 
