@@ -5,7 +5,7 @@
   "author": {
     "name": "AndrewMcGoveran"
   },
-  "version": "0.0.2",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -18,7 +18,7 @@
     "generator",
     "typescript"
   ],
-  "publisher": "Andrew McGoveran",
+  "publisher": "AndrewMcGoveran",
   "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
   "activationEvents": [
     "onCommand:extension.generateComponent"
@@ -76,7 +76,7 @@
         "reactComponentGenerator.createTestsFile": {
           "type": "boolean",
           "default": "true",
-          "description": "Specifies if a styles file should be generated with the component."
+          "description": "Specifies if a test file should be generated with the component."
         },
         "reactComponentGenerator.useIndexFile": {
           "type": "boolean",
