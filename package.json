@@ -5,7 +5,6 @@
   "author": {
     "name": "AndrewMcGoveran"
   },
-  "publisher": "Andrew McGoveran",
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.51.0"
@@ -19,6 +18,7 @@
     "generator",
     "typescript"
   ],
+  "publisher": "Andrew McGoveran",
   "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
   "activationEvents": [
     "onCommand:extension.generateComponent"
@@ -48,7 +48,7 @@
     "configuration": {
       "title": "react-component-generator",
       "properties": {
-        "reactcomponentgenerator.language": {
+        "reactComponentGenerator.language": {
           "type": "string",
           "default": "ts",
           "enum": [
@@ -56,6 +56,37 @@
             "js"
           ],
           "description": "Specifies if components should be generated in TypeScript or JavaScript."
+        },
+        "reactComponentGenerator.stylesLanguage": {
+          "type": "string",
+          "default": "scss",
+          "enum": [
+            "scss",
+            "css",
+            "module.scss",
+            "module.css"
+          ],
+          "description": "Specifies what language will be used for styles."
+        },
+        "reactComponentGenerator.createStylesFile": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if a styles file should be generated with the component."
+        },
+        "reactComponentGenerator.createTestsFile": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if a styles file should be generated with the component."
+        },
+        "reactComponentGenerator.useIndexFile": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if the components folder should have an index file to export all of it's components."
+        },
+        "reactComponentGenerator.useDefaultExport": {
+          "type": "boolean",
+          "default": "false",
+          "description": "Specifies if the generated component should be a default export."
         }
       }
     }
