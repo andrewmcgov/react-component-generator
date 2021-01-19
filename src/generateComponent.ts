@@ -131,7 +131,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   if (createTestsFile) {
     writeFile(
       `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-      testFileTemplate(componentName)
+      testFileTemplate(componentName, useDefaultExport)
     );
   }
 
