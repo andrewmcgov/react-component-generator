@@ -1,8 +1,11 @@
-export function reactFunctionComponentTemplate(componentName: string) {
+export function reactFunctionComponentTemplate(
+  componentName: string,
+  useDefaultExport: boolean
+) {
   return `
 import React from 'react';
 
-export function ${componentName}() {
+export ${useDefaultExport ? 'default ' : ''}function ${componentName}() {
   return <div>${componentName}</div>;
 }
 `.trimLeft();

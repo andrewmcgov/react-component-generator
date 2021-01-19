@@ -10,8 +10,23 @@ enum Language {
   javaScript = 'js',
 }
 
+enum StyleLanguage {
+  css = 'css',
+  scss = 'scss',
+  moduleCss = 'module.css',
+  moduleScss = 'module.scss',
+}
+
 function writeFile(path: string, content: string) {
   workspace.fs.writeFile(Uri.file(path), new Uint8Array(Buffer.from(content)));
+}
+
+function getSetting<T>(key: string, defaultValue: T): T {
+  const value: T | undefined = workspace
+    .getConfiguration('reactComponentGenerator')
+    .get(key);
+
+  return value === undefined ? defaultValue : value;
 }
 
 async function readFile(path: string) {
@@ -58,7 +73,8 @@ async function directoryToAddComponent(uri: Uri) {
 async function writeComponentsFolderIndexFile(
   directory: string,
   componentName: string,
-  language: Language
+  language: Language,
+  useDefaultExport: boolean
 ) {
   const componentsFolderIndexPath = `${directory}/index.${language}`;
   const componentsFolderIndexContents = await readFile(
@@ -68,38 +84,66 @@ async function writeComponentsFolderIndexFile(
   if (componentsFolderIndexContents) {
     writeFile(
       componentsFolderIndexPath,
-      componentsFolderIndexContents.concat(exportLineTemplate(componentName))
+      componentsFolderIndexContents.concat(
+        exportLineTemplate(componentName, useDefaultExport, true)
+      )
     );
   } else {
-    writeFile(componentsFolderIndexPath, exportLineTemplate(componentName));
+    writeFile(
+      componentsFolderIndexPath,
+      exportLineTemplate(componentName, useDefaultExport, true)
+    );
   }
 }
 
 async function writeComponentFiles(directory: string, componentName: string) {
-  const language: Language =
-    workspace.getConfiguration('reactcomponentgenerator').get('language') ||
-    Language.typeScript;
+  const language = getSetting<Language>('language', Language.typeScript);
+  const stylesLanguage = getSetting<StyleLanguage>(
+    'stylesLanguage',
+    StyleLanguage.scss
+  );
+  const createStylesFile = getSetting<boolean>('createStylesFile', false);
+  const createTestsFile = getSetting<boolean>('createTestsFile', false);
+  const useIndexFile = getSetting<boolean>('useIndexFile', true);
+  const useDefaultExport = getSetting<boolean>('useDefaultExport', true);
 
-  // Write component index file
+  // Write index file
   writeFile(
     `${directory}/${componentName}/index.${language}`,
-    exportLineTemplate(componentName)
+    exportLineTemplate(componentName, useDefaultExport)
   );
 
   // Write component file
   writeFile(
     `${directory}/${componentName}/${componentName}.${language}x`,
-    reactFunctionComponentTemplate(componentName)
+    reactFunctionComponentTemplate(componentName, useDefaultExport)
   );
 
-  // Write component file
-  writeFile(
-    `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-    testFileTemplate(componentName)
-  );
+  // Write style file
+  if (createStylesFile) {
+    writeFile(
+      `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
+      ''
+    );
+  }
+
+  // Write test file
+  if (createTestsFile) {
+    writeFile(
+      `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
+      testFileTemplate(componentName)
+    );
+  }
 
   // Write components folder index file
-  writeComponentsFolderIndexFile(directory, componentName, language);
+  if (useIndexFile) {
+    writeComponentsFolderIndexFile(
+      directory,
+      componentName,
+      language,
+      useDefaultExport
+    );
+  }
 }
 
 // This is the function that gets registered to our command
