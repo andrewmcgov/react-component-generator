@@ -4,6 +4,12 @@ All notable changes to this extension will be documented in this file.
 
 ## [Unreleased]
 
+-
+
+## [0.1.1] - 2021-01-19
+
+### Fixed
+
 - Fix issue when importing a component exported as default into the generated test file
 
 ## [0.1.0] - 2021-01-18
