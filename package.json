@@ -79,6 +79,11 @@
           "default": "true",
           "description": "Specifies if a test file should be generated with the component."
         },
+        "reactComponentGenerator.createStoriesFile": {
+          "type": "boolean",
+          "default": "false",
+          "description": "Specifies if a stories file should be generated with the component."
+        },
         "reactComponentGenerator.useIndexFile": {
           "type": "boolean",
           "default": "true",

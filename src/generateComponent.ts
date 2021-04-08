@@ -4,6 +4,7 @@ import {
   reactFunctionComponentTemplate,
   testFileTemplate,
   stylesTemplate,
+  storiesTemplate,
 } from './templates';
 
 enum Language {
@@ -104,6 +105,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   );
   const createStylesFile = getSetting<boolean>('createStylesFile', false);
   const createTestsFile = getSetting<boolean>('createTestsFile', false);
+  const createStoriesFile = getSetting<boolean>('createStoriesFile', false);
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
 
   // Write index file
@@ -131,6 +133,14 @@ async function writeComponentFiles(directory: string, componentName: string) {
     writeFile(
       `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
       testFileTemplate(componentName)
+    );
+  }
+
+  // Write stories file
+  if (createStoriesFile) {
+    writeFile(
+      `${directory}/${componentName}/${componentName}.stories.${language}x`,
+      storiesTemplate(componentName)
     );
   }
 
