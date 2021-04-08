@@ -1,4 +1,6 @@
-import {window, workspace, Uri} from 'vscode';
+import {window, Uri} from 'vscode';
+
+import {writeFile, getSetting, readFile, readDirectory} from './utilities';
 import {
   exportLineTemplate,
   reactFunctionComponentTemplate,
@@ -6,48 +8,7 @@ import {
   stylesTemplate,
   storiesTemplate,
 } from './templates';
-
-enum Language {
-  typeScript = 'ts',
-  javaScript = 'js',
-}
-
-enum StyleLanguage {
-  css = 'css',
-  scss = 'scss',
-  moduleCss = 'module.css',
-  moduleScss = 'module.scss',
-}
-
-function writeFile(path: string, content: string) {
-  workspace.fs.writeFile(Uri.file(path), new Uint8Array(Buffer.from(content)));
-}
-
-function getSetting<T>(key: string, defaultValue: T): T {
-  const value: T | undefined = workspace
-    .getConfiguration('reactComponentGenerator')
-    .get(key);
-
-  return value === undefined ? defaultValue : value;
-}
-
-async function readFile(path: string) {
-  try {
-    const file = await workspace.fs.readFile(Uri.file(path));
-    return file.toString();
-  } catch {
-    return null;
-  }
-}
-
-async function readDirectory(path: string) {
-  try {
-    const directory = await workspace.fs.readDirectory(Uri.file(path));
-    return directory;
-  } catch {
-    return null;
-  }
-}
+import {Language, StyleLanguage} from './types';
 
 async function directoryToAddComponent(uri: Uri) {
   const {path} = uri;
@@ -61,7 +22,7 @@ async function directoryToAddComponent(uri: Uri) {
   }
 
   // Otherwise, we want to work in the ./components folder
-  const pathArray = uri.path.split('/');
+  const pathArray = path.split('/');
   pathArray.pop();
   const newPath = pathArray.join('/');
 
@@ -159,7 +120,7 @@ export async function generateComponent(uri?: Uri) {
   const componentName = await window.showInputBox();
 
   if (!componentName) {
-    return console.error('No component name passed');
+    return window.showErrorMessage('No component name passed');
   }
 
   const directory = await directoryToAddComponent(uri);

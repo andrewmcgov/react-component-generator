@@ -21,7 +21,8 @@
   "publisher": "AndrewMcGoveran",
   "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
   "activationEvents": [
-    "onCommand:extension.generateComponent"
+    "onCommand:extension.generateComponent",
+    "onCommand:extension.generateStories"
   ],
   "main": "./dist/extension.js",
   "icon": "assets/images/icon.png",
@@ -30,6 +31,10 @@
       {
         "command": "extension.generateComponent",
         "title": "Generate react component"
+      },
+      {
+        "command": "extension.generateStories",
+        "title": "Generate stories file"
       }
     ],
     "menus": {
@@ -37,11 +42,19 @@
         {
           "command": "extension.generateComponent",
           "group": "navigation"
+        },
+        {
+          "command": "extension.generateStories",
+          "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "command": "extension.generateComponent",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.generateStories",
           "group": "navigation"
         }
       ]
