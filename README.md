@@ -7,7 +7,7 @@ A VS Code extension for generating new react component files with the following 
     - `index.ts`
     - `/NewComponent`
       - `index.ts`
-      - `NewComponent.ts`
+      - `NewComponent.tsx`
       - `/tests`
         - `NewComponent.test.tsx`
 
@@ -24,7 +24,6 @@ Right click in the file editor or on a file in the explorer and click `Generate 
 - **Styles Language** - Specifies what language will be used for styles.
 - **Create Tests File** - Specifies if a test file should be generated with the component.
 - **Use Index File** - Specifies if the components folder should have an index file to export all of it's components.
-- **Use Default Export** - Specifies if the generated component should be a default export.
 
 ## Development
 

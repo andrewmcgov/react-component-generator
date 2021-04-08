@@ -83,11 +83,6 @@
           "type": "boolean",
           "default": "true",
           "description": "Specifies if the components folder should have an index file to export all of it's components."
-        },
-        "reactComponentGenerator.useDefaultExport": {
-          "type": "boolean",
-          "default": "false",
-          "description": "Specifies if the generated component should be a default export."
         }
       }
     }

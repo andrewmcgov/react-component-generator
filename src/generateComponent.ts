@@ -73,8 +73,7 @@ async function directoryToAddComponent(uri: Uri) {
 async function writeComponentsFolderIndexFile(
   directory: string,
   componentName: string,
-  language: Language,
-  useDefaultExport: boolean
+  language: Language
 ) {
   const componentsFolderIndexPath = `${directory}/index.${language}`;
   const componentsFolderIndexContents = await readFile(
@@ -85,13 +84,13 @@ async function writeComponentsFolderIndexFile(
     writeFile(
       componentsFolderIndexPath,
       componentsFolderIndexContents.concat(
-        exportLineTemplate(componentName, useDefaultExport, true)
+        exportLineTemplate(componentName, true)
       )
     );
   } else {
     writeFile(
       componentsFolderIndexPath,
-      exportLineTemplate(componentName, useDefaultExport, true)
+      exportLineTemplate(componentName, true)
     );
   }
 }
@@ -105,18 +104,17 @@ async function writeComponentFiles(directory: string, componentName: string) {
   const createStylesFile = getSetting<boolean>('createStylesFile', false);
   const createTestsFile = getSetting<boolean>('createTestsFile', false);
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
-  const useDefaultExport = getSetting<boolean>('useDefaultExport', true);
 
   // Write index file
   writeFile(
     `${directory}/${componentName}/index.${language}`,
-    exportLineTemplate(componentName, useDefaultExport)
+    exportLineTemplate(componentName)
   );
 
   // Write component file
   writeFile(
     `${directory}/${componentName}/${componentName}.${language}x`,
-    reactFunctionComponentTemplate(componentName, useDefaultExport)
+    reactFunctionComponentTemplate(componentName)
   );
 
   // Write style file
@@ -131,18 +129,13 @@ async function writeComponentFiles(directory: string, componentName: string) {
   if (createTestsFile) {
     writeFile(
       `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-      testFileTemplate(componentName, useDefaultExport)
+      testFileTemplate(componentName)
     );
   }
 
   // Write components folder index file
   if (useIndexFile) {
-    writeComponentsFolderIndexFile(
-      directory,
-      componentName,
-      language,
-      useDefaultExport
-    );
+    writeComponentsFolderIndexFile(directory, componentName, language);
   }
 }
 
