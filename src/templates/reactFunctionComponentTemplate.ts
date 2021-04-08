@@ -4,8 +4,12 @@ import React from 'react';
 
 import styles from './${componentName}.scss';
 
-export function ${componentName}() {
-  return <div className={styles.${componentName}}>${componentName}</div>;
+export interface ${componentName}Props {
+  prop?: string;
+}
+
+export function ${componentName}({prop = 'default value'}: ${componentName}Props) {
+  return <div className={styles.${componentName}}>${componentName} {prop}</div>;
 }
 `.trimLeft();
 }
