@@ -3,6 +3,7 @@ import {
   exportLineTemplate,
   reactFunctionComponentTemplate,
   testFileTemplate,
+  stylesTemplate,
 } from './templates';
 
 enum Language {
@@ -121,7 +122,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   if (createStylesFile) {
     writeFile(
       `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
-      ''
+      stylesTemplate(componentName)
     );
   }
 
