@@ -82,16 +82,6 @@
           ],
           "description": "Specifies what language will be used for styles."
         },
-        "reactComponentGenerator.createStylesFile": {
-          "type": "boolean",
-          "default": "true",
-          "description": "Specifies if a styles file should be generated with the component."
-        },
-        "reactComponentGenerator.createTestsFile": {
-          "type": "boolean",
-          "default": "true",
-          "description": "Specifies if a test file should be generated with the component."
-        },
         "reactComponentGenerator.createStoriesFile": {
           "type": "boolean",
           "default": "false",

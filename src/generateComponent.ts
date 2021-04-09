@@ -64,8 +64,6 @@ async function writeComponentFiles(directory: string, componentName: string) {
     'stylesLanguage',
     StyleLanguage.scss
   );
-  const createStylesFile = getSetting<boolean>('createStylesFile', false);
-  const createTestsFile = getSetting<boolean>('createTestsFile', false);
   const createStoriesFile = getSetting<boolean>('createStoriesFile', false);
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
 
@@ -82,20 +80,16 @@ async function writeComponentFiles(directory: string, componentName: string) {
   );
 
   // Write style file
-  if (createStylesFile) {
-    writeFile(
-      `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
-      stylesTemplate(componentName)
-    );
-  }
+  writeFile(
+    `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
+    stylesTemplate(componentName)
+  );
 
   // Write test file
-  if (createTestsFile) {
-    writeFile(
-      `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-      testFileTemplate(componentName)
-    );
-  }
+  writeFile(
+    `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
+    testFileTemplate(componentName)
+  );
 
   // Write stories file
   if (createStoriesFile) {
