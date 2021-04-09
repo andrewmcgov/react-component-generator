@@ -23,6 +23,11 @@ export async function pathToAddStories(uri: Uri, componentName: string) {
 }
 
 export async function generateStories(uri?: Uri) {
+  const verboseStoriesComments = getSetting<boolean>(
+    'verboseStoriesComments',
+    true
+  );
+
   if (!uri) {
     return window.showErrorMessage('No file path found.');
   }
@@ -35,5 +40,5 @@ export async function generateStories(uri?: Uri) {
 
   const path = await pathToAddStories(uri, componentName);
 
-  writeFile(path, storiesTemplate(componentName));
+  writeFile(path, storiesTemplate(componentName, verboseStoriesComments));
 }
