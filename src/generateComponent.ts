@@ -104,7 +104,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   }
 
   // Write components folder index file
-  if (useIndexFile) {
+  if (useIndexFile && !directory.endsWith('app/components')) {
     writeComponentsFolderIndexFile(directory, componentName, language);
   }
 }
