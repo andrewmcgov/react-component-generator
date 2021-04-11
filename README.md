@@ -8,6 +8,7 @@ A VS Code extension for generating new react component files with the following 
     - `/NewComponent`
       - `index.ts`
       - `NewComponent.tsx`
+      - `NewComponent.stories.tsx` (optional)
       - `/tests`
         - `NewComponent.test.tsx`
 
@@ -17,13 +18,15 @@ Right click in the file editor or on a file in the explorer and click `Generate 
 
 <img width="417" alt="Generate react component appears as an option in the explorer right click menu" src="https://user-images.githubusercontent.com/14366097/100553487-1ecc0800-325c-11eb-929b-add9b82cac47.png">
 
+Right click in the file editor or on a file in the explorer and click `Generate stories file` to add a stories file to an existing component.
+
 ## Settings
 
 - **Language** - Specifies if components should be generated in TypeScript or JavaScript.
-- **Create Styles File** - Specifies if a styles file should be generated with the component.
 - **Styles Language** - Specifies what language will be used for styles.
-- **Create Tests File** - Specifies if a test file should be generated with the component.
-- **Use Index File** - Specifies if the components folder should have an index file to export all of it's components.
+- **Create Stories File** - Specifies if a stories file should be generated with the component.
+- **Verbose Stories Comments** - Specifies if a stories file should be generated with comments.
+- **Use Index File** - Specifies if the components folder should have an index file to export all of it's components. Does not add or update the index file at `app/components/index`
 
 ## Development
 
