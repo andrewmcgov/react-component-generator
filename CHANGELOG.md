@@ -4,6 +4,10 @@ All notable changes to this extension will be documented in this file.
 
 ## [Unreleased]
 
+-
+
+## [1.0.0] - 2021-04-14
+
 ### Added
 
 - Setting to generate a stories file while generating a component
