@@ -5,7 +5,7 @@
   "author": {
     "name": "AndrewMcGoveran"
   },
-  "version": "0.1.1",
+  "version": "1.0.0-beta.0",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -21,7 +21,8 @@
   "publisher": "AndrewMcGoveran",
   "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
   "activationEvents": [
-    "onCommand:extension.generateComponent"
+    "onCommand:extension.generateComponent",
+    "onCommand:extension.generateStories"
   ],
   "main": "./dist/extension.js",
   "icon": "assets/images/icon.png",
@@ -29,7 +30,11 @@
     "commands": [
       {
         "command": "extension.generateComponent",
-        "title": "Generate react component"
+        "title": "Generate React component"
+      },
+      {
+        "command": "extension.generateStories",
+        "title": "Generate Storybook stories file"
       }
     ],
     "menus": {
@@ -37,11 +42,19 @@
         {
           "command": "extension.generateComponent",
           "group": "navigation"
+        },
+        {
+          "command": "extension.generateStories",
+          "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "command": "extension.generateComponent",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.generateStories",
           "group": "navigation"
         }
       ]
@@ -69,25 +82,20 @@
           ],
           "description": "Specifies what language will be used for styles."
         },
-        "reactComponentGenerator.createStylesFile": {
+        "reactComponentGenerator.createStoriesFile": {
           "type": "boolean",
-          "default": "true",
-          "description": "Specifies if a styles file should be generated with the component."
-        },
-        "reactComponentGenerator.createTestsFile": {
-          "type": "boolean",
-          "default": "true",
-          "description": "Specifies if a test file should be generated with the component."
+          "default": "false",
+          "description": "Specifies if a stories file should be generated with the component."
         },
         "reactComponentGenerator.useIndexFile": {
           "type": "boolean",
           "default": "true",
           "description": "Specifies if the components folder should have an index file to export all of it's components."
         },
-        "reactComponentGenerator.useDefaultExport": {
+        "reactComponentGenerator.verboseStoriesComments": {
           "type": "boolean",
-          "default": "false",
-          "description": "Specifies if the generated component should be a default export."
+          "default": "true",
+          "description": "Specifies if the generated stories file should have comments."
         }
       }
     }

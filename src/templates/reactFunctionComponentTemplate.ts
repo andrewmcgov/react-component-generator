@@ -1,12 +1,15 @@
-export function reactFunctionComponentTemplate(
-  componentName: string,
-  useDefaultExport: boolean
-) {
+export function reactFunctionComponentTemplate(componentName: string) {
   return `
 import React from 'react';
 
-export ${useDefaultExport ? 'default ' : ''}function ${componentName}() {
-  return <div>${componentName}</div>;
+import styles from './${componentName}.scss';
+
+export interface ${componentName}Props {
+  prop?: string;
+}
+
+export function ${componentName}({prop = 'default value'}: ${componentName}Props) {
+  return <div className={styles.${componentName}}>${componentName} {prop}</div>;
 }
 `.trimLeft();
 }

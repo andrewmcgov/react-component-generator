@@ -1,15 +1,8 @@
-export function testFileTemplate(
-  componentName: string,
-  importAsDefault: boolean
-) {
+export function testFileTemplate(componentName: string) {
   return `
 import React from 'react';
 
-${
-  importAsDefault
-    ? `import ${componentName} from '../${componentName}'`
-    : `import {${componentName}} from '../${componentName}'`
-};
+import {${componentName}} from '../${componentName}';
 
 describe('<${componentName} />', () => {});
 `.trimLeft();
