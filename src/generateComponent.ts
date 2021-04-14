@@ -1,6 +1,12 @@
 import {window, Uri} from 'vscode';
 
-import {writeFile, getSetting, readFile, readDirectory} from './utilities';
+import {
+  writeFile,
+  getSetting,
+  readFile,
+  readDirectory,
+  openFile,
+} from './utilities';
 import {
   exportLineTemplate,
   reactFunctionComponentTemplate,
@@ -78,8 +84,9 @@ async function writeComponentFiles(directory: string, componentName: string) {
   );
 
   // Write component file
-  writeFile(
-    `${directory}/${componentName}/${componentName}.${language}x`,
+  const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
+  const componentPromise = writeFile(
+    componentPath,
     reactFunctionComponentTemplate(componentName)
   );
 
@@ -107,6 +114,9 @@ async function writeComponentFiles(directory: string, componentName: string) {
   if (useIndexFile && !directory.endsWith('app/components')) {
     writeComponentsFolderIndexFile(directory, componentName, language);
   }
+
+  await componentPromise;
+  openFile(componentPath);
 }
 
 // This is the function that gets registered to our command
@@ -115,7 +125,9 @@ export async function generateComponent(uri?: Uri) {
     return window.showErrorMessage('No file path found.');
   }
 
-  const componentName = await window.showInputBox();
+  const componentName = await window.showInputBox({
+    prompt: 'Component name',
+  });
 
   if (!componentName) {
     return window.showErrorMessage('No component name passed');

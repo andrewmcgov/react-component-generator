@@ -2,9 +2,9 @@ import {window, Uri} from 'vscode';
 import {storiesTemplate} from './templates';
 import {Language} from './types';
 
-import {writeFile, readDirectory, getSetting} from './utilities';
+import {writeFile, readDirectory, getSetting, openFile} from './utilities';
 
-export async function pathToAddStories(uri: Uri, componentName: string) {
+async function pathToAddStories(uri: Uri, componentName: string) {
   const language = getSetting<Language>('language', Language.typeScript);
 
   const {path} = uri;
@@ -22,6 +22,16 @@ export async function pathToAddStories(uri: Uri, componentName: string) {
   return `${newPath}/${componentName}.stories.${language}x`;
 }
 
+async function suggestedComponentName(path: string) {
+  if (await readDirectory(path)) {
+    return '';
+  }
+
+  const pathArray = path.split('/');
+  const filename = pathArray.pop();
+  return filename?.split('.')[0];
+}
+
 export async function generateStories(uri?: Uri) {
   const verboseStoriesComments = getSetting<boolean>(
     'verboseStoriesComments',
@@ -32,7 +42,10 @@ export async function generateStories(uri?: Uri) {
     return window.showErrorMessage('No file path found.');
   }
 
-  const componentName = await window.showInputBox();
+  const componentName = await window.showInputBox({
+    prompt: 'Component name',
+    value: await suggestedComponentName(uri.path),
+  });
 
   if (!componentName) {
     return window.showErrorMessage('No component name passed');
@@ -40,5 +53,6 @@ export async function generateStories(uri?: Uri) {
 
   const path = await pathToAddStories(uri, componentName);
 
-  writeFile(path, storiesTemplate(componentName, verboseStoriesComments));
+  await writeFile(path, storiesTemplate(componentName, verboseStoriesComments));
+  openFile(path);
 }

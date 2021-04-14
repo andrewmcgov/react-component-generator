@@ -1,7 +1,10 @@
-import {workspace, Uri} from 'vscode';
+import {window, workspace, Uri} from 'vscode';
 
-export function writeFile(path: string, content: string) {
-  workspace.fs.writeFile(Uri.file(path), new Uint8Array(Buffer.from(content)));
+export async function writeFile(path: string, content: string) {
+  return workspace.fs.writeFile(
+    Uri.file(path),
+    new Uint8Array(Buffer.from(content))
+  );
 }
 
 export function getSetting<T>(key: string, defaultValue: T): T {
@@ -28,4 +31,10 @@ export async function readDirectory(path: string) {
   } catch {
     return null;
   }
+}
+
+export function openFile(path: string) {
+  workspace.openTextDocument(Uri.file(path)).then((doc) => {
+    window.showTextDocument(doc);
+  });
 }

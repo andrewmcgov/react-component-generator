@@ -18,6 +18,7 @@ All notable changes to this extension will be documented in this file.
 - Declare an interface named ComponentNameProps in the generated component
 - Use export \* …. in the ComponentName/index.ts file
 - No longer update index file at `app/components/index.ts`
+- Open the generated component file
 
 ### Removed
 
