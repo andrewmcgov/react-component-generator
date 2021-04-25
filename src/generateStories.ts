@@ -37,6 +37,7 @@ export async function generateStories(uri?: Uri) {
     'verboseStoriesComments',
     true
   );
+  const singleQoute = getSetting<boolean>('singleQuote', true);
 
   if (!uri) {
     return window.showErrorMessage('No file path found.');
@@ -53,6 +54,6 @@ export async function generateStories(uri?: Uri) {
 
   const path = await pathToAddStories(uri, componentName);
 
-  await writeFile(path, storiesTemplate(componentName, verboseStoriesComments));
+  await writeFile(path, storiesTemplate(componentName, verboseStoriesComments, singleQoute));
   openFile(path);
 }

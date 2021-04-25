@@ -96,6 +96,11 @@
           "type": "boolean",
           "default": "true",
           "description": "Specifies if the generated stories file should have comments."
+        },
+        "reactComponentGenerator.singleQuotes": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if single quotes should use for strings."
         }
       }
     }

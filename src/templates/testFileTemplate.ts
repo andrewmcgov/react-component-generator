@@ -1,9 +1,10 @@
-export function testFileTemplate(componentName: string) {
-  return `
+export function testFileTemplate(componentName: string, singleQoute: boolean = true) {
+  let text = `
 import React from 'react';
 
 import {${componentName}} from '../${componentName}';
 
 describe('<${componentName} />', () => {});
-`.trimLeft();
+`;
+  return (singleQoute ? text : text.split(`'`).join(`"`)).trimLeft();
 }

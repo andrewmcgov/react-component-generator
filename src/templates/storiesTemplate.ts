@@ -1,6 +1,7 @@
 export function storiesTemplate(
   componentName: string,
-  verboseComments: boolean
+  verboseComments: boolean,
+  singleQoute: boolean = true
 ) {
   let text =
     `import React from 'react';\n` +
@@ -62,5 +63,5 @@ export function storiesTemplate(
 
   text = text + `Basic.args = {};\n`;
 
-  return text;
+  return singleQoute ? text : text.split(`'`).join(`"`);
 }

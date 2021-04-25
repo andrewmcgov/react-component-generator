@@ -76,18 +76,19 @@ async function writeComponentFiles(directory: string, componentName: string) {
     true
   );
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
+  const singleQoute = getSetting<boolean>('singleQuote', true);
 
   // Write index file
   writeFile(
     `${directory}/${componentName}/index.${language}`,
-    exportLineTemplate(componentName)
+    exportLineTemplate(componentName, singleQoute)
   );
 
   // Write component file
   const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
   const componentPromise = writeFile(
     componentPath,
-    reactFunctionComponentTemplate(componentName)
+    reactFunctionComponentTemplate(componentName, singleQoute)
   );
 
   // Write style file
@@ -99,14 +100,14 @@ async function writeComponentFiles(directory: string, componentName: string) {
   // Write test file
   writeFile(
     `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-    testFileTemplate(componentName)
+    testFileTemplate(componentName, singleQoute)
   );
 
   // Write stories file
   if (createStoriesFile) {
     writeFile(
       `${directory}/${componentName}/${componentName}.stories.${language}x`,
-      storiesTemplate(componentName, verboseStoriesComments)
+      storiesTemplate(componentName, verboseStoriesComments, singleQoute)
     );
   }
 

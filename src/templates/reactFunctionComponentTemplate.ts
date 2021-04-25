@@ -1,5 +1,5 @@
-export function reactFunctionComponentTemplate(componentName: string) {
-  return `
+export function reactFunctionComponentTemplate(componentName: string, singleQoute: boolean = true) {
+  let text = `
 import React from 'react';
 
 import styles from './${componentName}.scss';
@@ -11,5 +11,6 @@ export interface ${componentName}Props {
 export function ${componentName}({prop = 'default value'}: ${componentName}Props) {
   return <div className={styles.${componentName}}>${componentName} {prop}</div>;
 }
-`.trimLeft();
+`;
+  return (singleQoute ? text : text.split(`'`).join(`"`)).trimLeft();
 }
