@@ -16,7 +16,7 @@ A VS Code extension for generating new react component files with the following 
 
 Right click in the file editor or on a file in the explorer and click `Generate react component` to scaffold out a new React component with all the files you need.
 
-<img width="417" alt="Generate react component appears as an option in the explorer right click menu" src="https://user-images.githubusercontent.com/14366097/100553487-1ecc0800-325c-11eb-929b-add9b82cac47.png">
+<img width="336" alt="Screen Shot 2021-05-06 at 2 04 13 PM" src="https://user-images.githubusercontent.com/14366097/117344991-0b107780-ae74-11eb-9281-f15025134d10.png">
 
 Right click in the file editor or on a file in the explorer and click `Generate stories file` to add a stories file to an existing component.
 

@@ -5,7 +5,7 @@
   "author": {
     "name": "AndrewMcGoveran"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -41,21 +41,21 @@
       "editor/context": [
         {
           "command": "extension.generateComponent",
-          "group": "navigation"
+          "group": "navigation@5"
         },
         {
           "command": "extension.generateStories",
-          "group": "navigation"
+          "group": "navigation@6"
         }
       ],
       "explorer/context": [
         {
           "command": "extension.generateComponent",
-          "group": "navigation"
+          "group": "2_workspace"
         },
         {
           "command": "extension.generateStories",
-          "group": "navigation"
+          "group": "2_workspace"
         }
       ]
     },
