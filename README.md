@@ -1,6 +1,6 @@
 # React component generator
 
-A VS Code extension for generating new react component files with the following structure:
+A VS Code extension for generating new React component files with the following structure:
 
 - `StartingComponent`
   - `/components`
@@ -14,11 +14,11 @@ A VS Code extension for generating new react component files with the following 
 
 ## Features
 
-Right click in the file editor or on a file in the explorer and click `Generate react component` to scaffold out a new React component with all the files you need.
+Right click in the file editor or on a file in the explorer and click `Generate React component` to scaffold out a new React component with all the files you need.
 
-<img width="336" alt="Screen Shot 2021-05-06 at 2 04 13 PM" src="https://user-images.githubusercontent.com/14366097/117344991-0b107780-ae74-11eb-9281-f15025134d10.png">
+<img width="336" alt="Screen Shot of the contextual file explorer menu featuring items added by the extension" src="https://user-images.githubusercontent.com/14366097/117344991-0b107780-ae74-11eb-9281-f15025134d10.png">
 
-Right click in the file editor or on a file in the explorer and click `Generate stories file` to add a stories file to an existing component.
+Right click in the file editor or on a file in the explorer and click `Generate Storybook stories file` to add a stories file to an existing component.
 
 ## Settings
 
@@ -26,7 +26,7 @@ Right click in the file editor or on a file in the explorer and click `Generate 
 - **Styles Language** - Specifies what language will be used for styles.
 - **Create Stories File** - Specifies if a stories file should be generated with the component.
 - **Verbose Stories Comments** - Specifies if a stories file should be generated with comments.
-- **Use Index File** - Specifies if the components folder should have an index file to export all of it's components. Does not add or update the index file at `app/components/index`
+- **Use Index File** - Specifies if the components folder should have an index file to export all of its components. Does not add or update the index file at `app/components/index`
 
 ## Development
 
