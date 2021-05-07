@@ -6,6 +6,10 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.0.2] - 2021-05-07
+
+- Fix a few typos
+
 ## [1.0.1] - 2021-05-06
 
 - Move commads lower in list of menu items so we don't take over the 'new file' spot
