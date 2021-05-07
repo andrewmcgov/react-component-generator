@@ -1,7 +1,7 @@
 {
   "name": "react-component-generator",
   "displayName": "React Component Generator",
-  "description": "Generates files needed for new react components",
+  "description": "Generates files needed for new React components",
   "author": {
     "name": "AndrewMcGoveran"
   },
@@ -90,7 +90,7 @@
         "reactComponentGenerator.useIndexFile": {
           "type": "boolean",
           "default": "true",
-          "description": "Specifies if the components folder should have an index file to export all of it's components."
+          "description": "Specifies if the components folder should have an index file to export all of its components."
         },
         "reactComponentGenerator.verboseStoriesComments": {
           "type": "boolean",
