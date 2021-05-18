@@ -87,7 +87,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
   const componentPromise = writeFile(
     componentPath,
-    reactFunctionComponentTemplate(componentName)
+    reactFunctionComponentTemplate(componentName, stylesLanguage)
   );
 
   // Write style file
