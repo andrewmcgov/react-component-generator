@@ -6,6 +6,10 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.0.4] - 2021-09-07
+
+- Type the `meta` value instead of casting in Storybook template
+
 ## [1.0.3] - 2021-05-17
 
 - Fixed issue with styles import path when using a styles extension other than `.scss`
