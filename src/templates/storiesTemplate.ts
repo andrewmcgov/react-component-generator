@@ -17,7 +17,7 @@ export function storiesTemplate(
 
   text =
     text +
-    `export default {\n` +
+    `const meta: Meta = {\n` +
     `  title: 'components/${componentName}',\n` +
     `  component: ${componentName},\n` +
     `  parameters: {\n`;
@@ -37,7 +37,7 @@ export function storiesTemplate(
     `      url: 'https://www.figma.com/file/...?node-id=...',\n` +
     `    },\n` +
     `  },\n` +
-    `} as Meta;\n\n`;
+    `};\n\n`;
 
   if (verboseComments) {
     text = text + `// 👇 We create a "template" of how args map to rendering\n`;
@@ -60,7 +60,10 @@ export function storiesTemplate(
       `// Learn more: https://storybook.js.org/docs/react/writing-stories/args\n`;
   }
 
-  text = text + `Basic.args = {};\n`;
+  text = 
+    text + 
+      `Basic.args = {};\n\n` +
+      `export default meta;\n`;
 
   return text;
 }
