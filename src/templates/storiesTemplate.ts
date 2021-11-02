@@ -5,7 +5,7 @@ export function storiesTemplate(
   let text =
     `import React from 'react';\n` +
     `import {Meta, Story} from '@storybook/react/types-6-0';\n\n` +
-    `import type {${componentName}Props} from './${componentName}';\n\n`;
+    `import type {${componentName}Props} from './${componentName}';\n` +
     `import {${componentName}} from './${componentName}';\n\n`;
 
   if (verboseComments) {

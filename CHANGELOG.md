@@ -6,6 +6,10 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.0.5] - 2021-11-01
+
+- Use separate type import in Storybook stories template
+
 ## [1.0.4] - 2021-09-07
 
 - Type the `meta` value instead of casting in Storybook template
