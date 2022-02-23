@@ -4,7 +4,7 @@ export function storiesTemplate(
 ) {
   let text =
     `import React from 'react';\n` +
-    `import {Meta, Story} from '@storybook/react/types-6-0';\n\n` +
+    `import {Meta, StoryFn} from '@storybook/react';\n\n` +
     `import type {${componentName}Props} from './${componentName}';\n` +
     `import {${componentName}} from './${componentName}';\n\n`;
 
@@ -47,7 +47,7 @@ export function storiesTemplate(
 
   text =
     text +
-    `const Template: Story<${componentName}Props> = (args) => <${componentName} {...args} />;\n\n`;
+    `const Template: StoryFn<${componentName}Props> = (args) => <${componentName} {...args} />;\n\n`;
 
   if (verboseComments) {
     text = text + `// 👇 Each story then reuses that template\n`;
