@@ -6,6 +6,10 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.0.6] - 2022-02-22
+
+- Import StoryFn instead of Story type in storybook template
+
 ## [1.0.5] - 2021-11-01
 
 - Use separate type import in Storybook stories template
