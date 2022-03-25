@@ -5,8 +5,7 @@ export function storiesTemplate(
   let text =
     `import React from 'react';\n` +
     `import {Meta, StoryFn} from '@storybook/react';\n\n` +
-    `import type {${componentName}Props} from './${componentName}';\n` +
-    `import {${componentName}} from './${componentName}';\n\n`;
+    `import {${componentName}, Props} from './${componentName}';\n\n`;
 
   if (verboseComments) {
     text =
@@ -40,20 +39,7 @@ export function storiesTemplate(
     `  },\n` +
     `};\n\n` +
     `export default meta;\n\n`;
-
-  if (verboseComments) {
-    text = text + `// 👇 We create a "template" of how args map to rendering\n`;
-  }
-
-  text =
-    text +
-    `const Template: StoryFn<${componentName}Props> = (args) => <${componentName} {...args} />;\n\n`;
-
-  if (verboseComments) {
-    text = text + `// 👇 Each story then reuses that template\n`;
-  }
-
-  text = text + `export const Basic = Template.bind({});\n\n`;
+    `export const Basic: StoryFn<Props> = (args) => <${componentName} {...args} />;\n\n`;
 
   if (verboseComments) {
     text =
@@ -62,7 +48,19 @@ export function storiesTemplate(
       `// Learn more: https://storybook.js.org/docs/react/writing-stories/args\n`;
   }
 
-  text = text + `Basic.args = {};\n`;
+  text = text + `Basic.args = {\n` +
+    ` exampleBool: true,\n` +
+    ` exampleSelect: 'option1',\n` +
+    `};\n\n` +
+
+    `Basic.argTypes = {\n` +
+    ` exampleSelect: {\n` +
+    `   control: {\n` +
+    `     type: 'select',\n` +
+    `     options: ['option1', 'option2'],\n` +
+    `   },\n` +
+    ` },\n` +
+    `};\n\n`;
 
   return text;
 }
