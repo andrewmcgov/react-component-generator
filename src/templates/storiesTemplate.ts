@@ -39,7 +39,20 @@ export function storiesTemplate(
     `  },\n` +
     `};\n\n` +
     `export default meta;\n\n`;
-    `export const Basic: StoryFn<Props> = (args) => <${componentName} {...args} />;\n\n`;
+    
+  if (verboseComments) {
+    text = text + `// 👇 We create a "template" of how args map to rendering\n`;
+  }
+  
+  text =
+    text +
+    `const Template: StoryFn<${componentName}Props> = (args) => <${componentName} {...args} />;\n\n`;
+
+  if (verboseComments) {
+    text = text + `// 👇 Each story then reuses that template\n`;
+  }
+
+  text = text + `export const Basic = Template.bind({});\n\n`;
 
   if (verboseComments) {
     text =
