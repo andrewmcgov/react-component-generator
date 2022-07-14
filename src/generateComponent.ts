@@ -1,12 +1,6 @@
 import { window, Uri } from 'vscode';
 
-import {
-  writeFile,
-  getSetting,
-  readFile,
-  readDirectory,
-  openFile,
-} from './utilities';
+import { writeFile, getSetting, readDirectory, openFile } from './utilities';
 import {
   exportLineTemplate,
   reactFunctionComponentTemplate,
@@ -36,31 +30,6 @@ async function directoryToAddComponent(uri: Uri) {
   return newPath.concat('/components');
 }
 
-async function writeComponentsFolderIndexFile(
-  directory: string,
-  componentName: string,
-  language: Language
-) {
-  const componentsFolderIndexPath = `${directory}/index.${language}`;
-  const componentsFolderIndexContents = await readFile(
-    componentsFolderIndexPath
-  );
-
-  if (componentsFolderIndexContents) {
-    writeFile(
-      componentsFolderIndexPath,
-      componentsFolderIndexContents.concat(
-        exportLineTemplate(componentName, true)
-      )
-    );
-  } else {
-    writeFile(
-      componentsFolderIndexPath,
-      exportLineTemplate(componentName, true)
-    );
-  }
-}
-
 async function writeComponentFiles(directory: string, componentName: string) {
   const language = getSetting<Language>('language', Language.typeScript);
   const stylesLanguage = getSetting<StyleLanguage>(
@@ -81,11 +50,6 @@ async function writeComponentFiles(directory: string, componentName: string) {
     componentPath,
     reactFunctionComponentTemplate(componentName, stylesLanguage)
   );
-
-  // // Write components folder index file
-  // if (useIndexFile && !directory.endsWith('app/components')) {
-  //   writeComponentsFolderIndexFile(directory, componentName, language);
-  // }
 
   await componentPromise;
   openFile(componentPath);
