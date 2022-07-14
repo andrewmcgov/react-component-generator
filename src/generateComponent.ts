@@ -1,4 +1,4 @@
-import {window, Uri} from 'vscode';
+import { window, Uri } from 'vscode';
 
 import {
   writeFile,
@@ -10,14 +10,11 @@ import {
 import {
   exportLineTemplate,
   reactFunctionComponentTemplate,
-  testFileTemplate,
-  stylesTemplate,
-  storiesTemplate,
 } from './templates';
-import {Language, StyleLanguage} from './types';
+import { Language, StyleLanguage } from './types';
 
 async function directoryToAddComponent(uri: Uri) {
-  const {path} = uri;
+  const { path } = uri;
 
   // If user clicked on a components folder, we want to add our new component there
   if (path.endsWith('components')) {
@@ -70,11 +67,6 @@ async function writeComponentFiles(directory: string, componentName: string) {
     'stylesLanguage',
     StyleLanguage.scss
   );
-  const createStoriesFile = getSetting<boolean>('createStoriesFile', false);
-  const verboseStoriesComments = getSetting<boolean>(
-    'verboseStoriesComments',
-    true
-  );
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
 
   // Write index file
@@ -90,30 +82,10 @@ async function writeComponentFiles(directory: string, componentName: string) {
     reactFunctionComponentTemplate(componentName, stylesLanguage)
   );
 
-  // Write style file
-  writeFile(
-    `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
-    stylesTemplate(componentName)
-  );
-
-  // Write test file
-  writeFile(
-    `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-    testFileTemplate(componentName)
-  );
-
-  // Write stories file
-  if (createStoriesFile) {
-    writeFile(
-      `${directory}/${componentName}/${componentName}.stories.${language}x`,
-      storiesTemplate(componentName, verboseStoriesComments)
-    );
-  }
-
-  // Write components folder index file
-  if (useIndexFile && !directory.endsWith('app/components')) {
-    writeComponentsFolderIndexFile(directory, componentName, language);
-  }
+  // // Write components folder index file
+  // if (useIndexFile && !directory.endsWith('app/components')) {
+  //   writeComponentsFolderIndexFile(directory, componentName, language);
+  // }
 
   await componentPromise;
   openFile(componentPath);

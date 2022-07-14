@@ -1,11 +1,11 @@
 {
   "name": "react-component-generator",
-  "displayName": "React Component Generator",
-  "description": "Generates files needed for new React components",
+  "displayName": "React Component Generator 🗿",
+  "description": "Super duper simple React component generator with no BS 🗿",
   "author": {
-    "name": "AndrewMcGoveran"
+    "name": "aaronb97"
   },
-  "version": "1.0.6",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -18,11 +18,10 @@
     "generator",
     "typescript"
   ],
-  "publisher": "AndrewMcGoveran",
-  "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
+  "publisher": "aaronb97",
+  "bugs:url": "https://github.com/aaronb97/react-component-generator/issues",
   "activationEvents": [
-    "onCommand:extension.generateComponent",
-    "onCommand:extension.generateStories"
+    "onCommand:extension.generateComponent"
   ],
   "main": "./dist/extension.js",
   "icon": "assets/images/icon.png",
@@ -30,11 +29,7 @@
     "commands": [
       {
         "command": "extension.generateComponent",
-        "title": "Generate React component"
-      },
-      {
-        "command": "extension.generateStories",
-        "title": "Generate Storybook stories file"
+        "title": "Generate React Component 🗿"
       }
     ],
     "menus": {
@@ -42,19 +37,11 @@
         {
           "command": "extension.generateComponent",
           "group": "navigation@5"
-        },
-        {
-          "command": "extension.generateStories",
-          "group": "navigation@6"
         }
       ],
       "explorer/context": [
         {
           "command": "extension.generateComponent",
-          "group": "2_workspace"
-        },
-        {
-          "command": "extension.generateStories",
           "group": "2_workspace"
         }
       ]
@@ -70,41 +57,15 @@
             "js"
           ],
           "description": "Specifies if components should be generated in TypeScript or JavaScript."
-        },
-        "reactComponentGenerator.stylesLanguage": {
-          "type": "string",
-          "default": "scss",
-          "enum": [
-            "scss",
-            "css",
-            "module.scss",
-            "module.css"
-          ],
-          "description": "Specifies what language will be used for styles."
-        },
-        "reactComponentGenerator.createStoriesFile": {
-          "type": "boolean",
-          "default": "false",
-          "description": "Specifies if a stories file should be generated with the component."
-        },
-        "reactComponentGenerator.useIndexFile": {
-          "type": "boolean",
-          "default": "true",
-          "description": "Specifies if the components folder should have an index file to export all of its components."
-        },
-        "reactComponentGenerator.verboseStoriesComments": {
-          "type": "boolean",
-          "default": "true",
-          "description": "Specifies if the generated stories file should have comments."
         }
       }
     }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewmcgov/react-component-generator"
+    "url": "https://github.com/aaronb97/react-component-generator"
   },
-  "homepage": "https://github.com/andrewmcgov/react-component-generator/blob/main/README.md",
+  "homepage": "https://github.com/aaronb97/react-component-generator/blob/main/README.md",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
     "vscode:prepublish": "yarn run package",

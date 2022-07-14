@@ -5,16 +5,11 @@ export function reactFunctionComponentTemplate(
   stylesLanguage: StyleLanguage = StyleLanguage.scss
 ) {
   return `
-import React from 'react';
-
-import styles from './${componentName}.${stylesLanguage}';
-
-export interface ${componentName}Props {
-  prop?: string;
+export interface Props {
 }
 
-export function ${componentName}({prop = 'default value'}: ${componentName}Props) {
-  return <div className={styles.${componentName}}>${componentName} {prop}</div>;
+export function ${componentName}({}: Props) {
+  return <div>Hello world</div>;
 }
 `.trimLeft();
 }
