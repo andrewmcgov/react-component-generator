@@ -4,7 +4,7 @@ export function storiesTemplate(
 ) {
   let text =
     `import React from 'react';\n` +
-    `import {Meta, StoryFn} from '@storybook/react';\n\n` +
+    `import type {Meta, StoryFn} from '@storybook/react';\n\n` +
     `import type {${componentName}Props} from './${componentName}';\n` +
     `import {${componentName}} from './${componentName}';\n\n`;
 
@@ -19,7 +19,6 @@ export function storiesTemplate(
   text =
     text +
     `const meta: Meta = {\n` +
-    `  title: 'components/${componentName}',\n` +
     `  component: ${componentName},\n` +
     `  parameters: {\n`;
 

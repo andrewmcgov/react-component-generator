@@ -6,6 +6,11 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.0.7] - 2022-09-29
+
+- Removes title from `Meta` object in stories template
+- Uses `import type` for imports from storybook in stories template
+
 ## [1.0.6] - 2022-02-22
 
 - Import StoryFn instead of Story type in storybook template
