@@ -6,6 +6,10 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.0.8] - 2022-10-27
+
+- Updated storybook web docs link
+
 ## [1.0.7] - 2022-09-29
 
 - Removes title from `Meta` object in stories template
