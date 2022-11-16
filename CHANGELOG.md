@@ -6,6 +6,12 @@ All notable changes to this extension will be documented in this file.
 
 -
 
+## [1.1.0] - 2022-11-16
+
+### Added
+
+- New setting to include or exclude the React import in generated components and stories. The React import is not needed if your app is using [the new JSX Transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-different-in-the-new-transform)
+
 ## [1.0.8] - 2022-10-27
 
 - Updated storybook web docs link

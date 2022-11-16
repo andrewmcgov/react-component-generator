@@ -76,6 +76,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
     true
   );
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
+  const importReact = getSetting<boolean>('importReact', false);
 
   // Write index file
   writeFile(
@@ -87,7 +88,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
   const componentPromise = writeFile(
     componentPath,
-    reactFunctionComponentTemplate(componentName, stylesLanguage)
+    reactFunctionComponentTemplate(componentName, stylesLanguage, importReact)
   );
 
   // Write style file
@@ -106,7 +107,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   if (createStoriesFile) {
     writeFile(
       `${directory}/${componentName}/${componentName}.stories.${language}x`,
-      storiesTemplate(componentName, verboseStoriesComments)
+      storiesTemplate(componentName, verboseStoriesComments, importReact)
     );
   }
 

@@ -1,9 +1,10 @@
 export function storiesTemplate(
   componentName: string,
-  verboseComments: boolean
+  verboseComments: boolean,
+  importReact: boolean
 ) {
   let text =
-    `import React from 'react';\n` +
+    (importReact ? "import React from 'react';\n" : '') +
     `import type {Meta, StoryFn} from '@storybook/react';\n\n` +
     `import type {${componentName}Props} from './${componentName}';\n` +
     `import {${componentName}} from './${componentName}';\n\n`;

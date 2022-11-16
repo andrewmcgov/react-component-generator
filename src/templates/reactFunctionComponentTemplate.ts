@@ -1,11 +1,12 @@
-import { StyleLanguage } from '../types';
+import {StyleLanguage} from '../types';
 
 export function reactFunctionComponentTemplate(
   componentName: string,
-  stylesLanguage: StyleLanguage = StyleLanguage.scss
+  stylesLanguage: StyleLanguage = StyleLanguage.scss,
+  importReact: boolean
 ) {
   return `
-import React from 'react';
+${importReact ? `import React from 'react';` : ''}
 
 import styles from './${componentName}.${stylesLanguage}';
 
