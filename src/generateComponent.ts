@@ -71,10 +71,6 @@ async function writeComponentFiles(directory: string, componentName: string) {
     StyleLanguage.scss
   );
   const createStoriesFile = getSetting<boolean>('createStoriesFile', false);
-  const verboseStoriesComments = getSetting<boolean>(
-    'verboseStoriesComments',
-    true
-  );
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
   const importReact = getSetting<boolean>('importReact', false);
 
@@ -107,7 +103,7 @@ async function writeComponentFiles(directory: string, componentName: string) {
   if (createStoriesFile) {
     writeFile(
       `${directory}/${componentName}/${componentName}.stories.${language}x`,
-      storiesTemplate(componentName, verboseStoriesComments, importReact)
+      storiesTemplate(componentName, importReact)
     );
   }
 

@@ -25,7 +25,6 @@ Right click in the file editor or on a file in the explorer and click `Generate 
 - **Language** - Specifies if components should be generated in TypeScript or JavaScript.
 - **Styles Language** - Specifies what language will be used for styles.
 - **Create Stories File** - Specifies if a stories file should be generated with the component.
-- **Verbose Stories Comments** - Specifies if a stories file should be generated with comments.
 - **Use Index File** - Specifies if the components folder should have an index file to export all of its components. Does not add or update the index file at `app/components/index`
 - **Import React** - Specifies if React should be imported in generated components and stories. The React import is not needed if your app is using [the new JSX Transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-different-in-the-new-transform).
 

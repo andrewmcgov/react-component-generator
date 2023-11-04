@@ -33,10 +33,6 @@ async function suggestedComponentName(path: string) {
 }
 
 export async function generateStories(uri?: Uri) {
-  const verboseStoriesComments = getSetting<boolean>(
-    'verboseStoriesComments',
-    true
-  );
   const importReact = getSetting<boolean>('importReact', false);
 
   if (!uri) {
@@ -54,9 +50,6 @@ export async function generateStories(uri?: Uri) {
 
   const path = await pathToAddStories(uri, componentName);
 
-  await writeFile(
-    path,
-    storiesTemplate(componentName, verboseStoriesComments, importReact)
-  );
+  await writeFile(path, storiesTemplate(componentName, importReact));
   openFile(path);
 }
