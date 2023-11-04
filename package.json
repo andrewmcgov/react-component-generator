@@ -73,7 +73,7 @@
         },
         "reactComponentGenerator.stylesLanguage": {
           "type": "string",
-          "default": "scss",
+          "default": "css",
           "enum": [
             "scss",
             "css",
@@ -91,11 +91,6 @@
           "type": "boolean",
           "default": "true",
           "description": "Specifies if the components folder should have an index file to export all of its components."
-        },
-        "reactComponentGenerator.verboseStoriesComments": {
-          "type": "boolean",
-          "default": "true",
-          "description": "Specifies if the generated stories file should have comments."
         },
         "reactComponentGenerator.importReact": {
           "type": "boolean",
