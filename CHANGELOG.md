@@ -4,6 +4,10 @@ All notable changes to this extension will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.1] - 2023-11-03
+
+### Added
+
 - Updated generated Storybook stories file to support [CSF3](https://storybook.js.org/blog/storybook-csf3-is-here/).
 - Removed verbose stories comments setting
 - Changed the default value of styles language to CSS
