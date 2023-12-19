@@ -45,3 +45,7 @@ export function toKebabCase(str: string) {
     .replace(/[\s_]+/g, '-')
     .toLowerCase();
 }
+
+export function toPascalCase(str: string) {
+  return (str.match(/[a-zA-Z0-9]+/g) || []).map(w => `${w.charAt(0).toUpperCase()}${w.slice(1)}`).join('');
+}

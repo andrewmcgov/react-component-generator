@@ -6,6 +6,7 @@ import {
   readFile,
   readDirectory,
   openFile,
+  toPascalCase,
 } from './utilities';
 import {
   exportLineTemplate,
@@ -65,7 +66,7 @@ async function writeComponentsFolderIndexFile(
   }
 }
 
-async function writeComponentFiles(directory: string, componentName: string) {
+async function writeComponentFiles(directory: string, componentNameStr: string) {
   const language = getSetting<Language>('language', Language.typeScript);
   const stylesLanguage = getSetting<StyleLanguage>(
     'stylesLanguage',
@@ -77,6 +78,8 @@ async function writeComponentFiles(directory: string, componentName: string) {
   const importReact = getSetting<boolean>('importReact', false);
   const useCssModules = getSetting<boolean>('useCssModules', true);
   const usePropTypes = getSetting<boolean>('usePropTypes', true);
+
+  const componentName = toPascalCase(componentNameStr);  
 
   // Write index file
   if(useIndexFile) {
