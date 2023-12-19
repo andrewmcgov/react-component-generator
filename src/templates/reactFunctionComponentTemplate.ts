@@ -10,24 +10,22 @@ export function reactFunctionComponentTemplate(
   usePropTypes: boolean
 ) {
   return `
-${importReact ? `import React from 'react';` : ''}
-${usePropTypes ? `import PropTypes from 'prop-types';` : ''}
-${useCssModules ? `import styles from './${componentName}.${stylesLanguage}';` : `import './${componentName}.${stylesLanguage}'`}
+${importReact ? `import React from 'react'` : ''}
+${usePropTypes ? `import PropTypes from 'prop-types'` : ''}
+${useCssModules ? `import styles from './${componentName}.${stylesLanguage}'` : `import './${componentName}.${stylesLanguage}'`}
 ${ language === Language.typeScript ? `
 export interface ${componentName}Props {
   customProp?: string;
-}`: '' }
-
-const ${componentName} = ({customProp = 'default value'}${language === Language.typeScript ? `: ${componentName}Props` : ''}) => {
-  return <div className=${useCssModules ? `{styles.${componentName}}` : `'${toKebabCase(componentName)}'`}>
-    ${componentName} {customProp}
-  </div>;
+}
+`: '' }
+const ${componentName} = ({ customProp = 'default value' }${language === Language.typeScript ? `: ${componentName}Props` : ''}) => {
+  return <div className=${useCssModules ? `{styles.${componentName}}` : `'${toKebabCase(componentName)}'`}>${componentName} {customProp}</div>
 }
 
 ${ language === Language.javaScript && usePropTypes ? `${componentName}.propTypes = {
-  customProp: PropTypes.string
+  customProp: PropTypes.string,
 }
 ` : '' }
-export default ${componentName};
+export default ${componentName}
 `.trimLeft();
 }
