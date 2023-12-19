@@ -87,6 +87,16 @@
           "default": "false",
           "description": "Specifies if a stories file should be generated with the component."
         },
+        "reactComponentGenerator.createTestFile": {
+          "type": "boolean",
+          "default": "false",
+          "description": "Specifies if a test file should be generated with the component."
+        },
+        "reactComponentGenerator.needsComponentParentDir": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if the component need to be located in a parent directory called 'components'."
+        },
         "reactComponentGenerator.useIndexFile": {
           "type": "boolean",
           "default": "true",
@@ -96,6 +106,16 @@
           "type": "boolean",
           "default": "false",
           "description": "Specifies if React should be imported in generated components and stories."
+        },
+        "reactComponentGenerator.useCssModules": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if the CSS Module structure should be respected in generated components."
+        },
+        "reactComponentGenerator.usePropTypes": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if PropTypes should be respected in generated components (JavaScript only)."
         }
       }
     }

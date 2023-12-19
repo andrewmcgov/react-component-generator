@@ -18,9 +18,10 @@ import {Language, StyleLanguage} from './types';
 
 async function directoryToAddComponent(uri: Uri) {
   const {path} = uri;
-
+  const needsComponentParentDir = getSetting<boolean>('needsComponentParentDir', false);
+  
   // If user clicked on a components folder, we want to add our new component there
-  if (path.endsWith('components')) {
+  if (!needsComponentParentDir || path.endsWith('components')) {
     return path;
     // If user clicks on a parent folder, we want to add our component to ParentFolder/components
   } else if (await readDirectory(path)) {
@@ -70,34 +71,41 @@ async function writeComponentFiles(directory: string, componentName: string) {
     'stylesLanguage',
     StyleLanguage.scss
   );
+  const createTestFile = getSetting<boolean>  ('createTestFile', true);
   const createStoriesFile = getSetting<boolean>('createStoriesFile', false);
   const useIndexFile = getSetting<boolean>('useIndexFile', true);
   const importReact = getSetting<boolean>('importReact', false);
+  const useCssModules = getSetting<boolean>('useCssModules', true);
+  const usePropTypes = getSetting<boolean>('usePropTypes', true);
 
   // Write index file
-  writeFile(
-    `${directory}/${componentName}/index.${language}`,
-    exportLineTemplate(componentName)
-  );
+  if(useIndexFile) {
+    writeFile(
+      `${directory}/${componentName}/index.${language}`,
+      exportLineTemplate(componentName)
+    );
+  }
 
   // Write component file
   const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
   const componentPromise = writeFile(
     componentPath,
-    reactFunctionComponentTemplate(componentName, stylesLanguage, importReact)
+    reactFunctionComponentTemplate(componentName, stylesLanguage, importReact, useCssModules, language, usePropTypes)
   );
 
   // Write style file
   writeFile(
     `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
-    stylesTemplate(componentName)
+    stylesTemplate(componentName, useCssModules)
   );
 
   // Write test file
-  writeFile(
-    `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-    testFileTemplate(componentName)
-  );
+  if (createTestFile) {
+    writeFile(
+      `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
+      testFileTemplate(componentName)
+    );
+  }
 
   // Write stories file
   if (createStoriesFile) {

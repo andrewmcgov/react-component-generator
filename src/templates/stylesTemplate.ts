@@ -1,6 +1,8 @@
-export function stylesTemplate(componentName: string) {
+import { toKebabCase } from "../utilities";
+
+export function stylesTemplate(componentName: string, useCssModules:boolean) {
   return `
-.${componentName} {
+.${useCssModules ? componentName : toKebabCase(componentName)} {
   
 }
 `.trimLeft();

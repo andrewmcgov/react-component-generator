@@ -38,3 +38,10 @@ export function openFile(path: string) {
     window.showTextDocument(doc);
   });
 }
+
+export function toKebabCase(str: string) {
+  return str
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[\s_]+/g, '-')
+    .toLowerCase();
+}
