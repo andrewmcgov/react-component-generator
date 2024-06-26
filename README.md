@@ -34,7 +34,7 @@ Right click in the file editor or on a file in the explorer and click `Generate 
 2. Install dependencies by running `yarn` in the project folder
 3. With extension source open in VS Code, press `F5` to open a new VS Code window with the extension running. `F5` runs the code in `.vscode/launch.json`.
 4. The extension code starts in `src/extension.ts`.
-5. Check out the [VS Code API documentation](https://code.visualstudio.com/api) for more info about buinding extensions.
+5. Check out the [VS Code API documentation](https://code.visualstudio.com/api) for more info about building extensions.
 
 ---
 
